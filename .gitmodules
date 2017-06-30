@@ -1,0 +1,6 @@
+[submodule "shared/external/pistache"]
+	path = shared/external/pistache
+	url = https://github.com/oktal/pistache.git
+[submodule "shared/external/msgpack-c"]
+	path = shared/external/msgpack-c
+	url = https://github.com/msgpack/msgpack-c.git
