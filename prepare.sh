@@ -13,6 +13,8 @@ ln -s $baseDir/shared/external/pistache/include/ $baseDir/shared/include/pistach
 # Msgpack
 ln -s $baseDir/shared/external/msgpack-c/include/* $baseDir/shared/include/
 
-
+# Crypto++
+mkdir $baseDir/shared/include/cryptopp
+ln -s $baseDir/shared/external/cryptopp/*.h $baseDir/shared/include/cryptopp/
 # end prepare includes
 

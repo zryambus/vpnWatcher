@@ -4,3 +4,6 @@
 [submodule "shared/external/msgpack-c"]
 	path = shared/external/msgpack-c
 	url = https://github.com/msgpack/msgpack-c.git
+[submodule "shared/external/cryptopp"]
+	path = shared/external/cryptopp
+	url = https://github.com/weidai11/cryptopp

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <pistache/endpoint.h>
 
-
 #include "vpnservice.h"
 
 int main()

@@ -1,5 +1,9 @@
-//
-// Created by ramb on 6/25/17.
-//
-
 #include "client.h"
+
+const std::string &Client::getIp() const {
+    return ip_;
+}
+
+const std::string &Client::getName() const {
+    return name_;
+}

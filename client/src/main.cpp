@@ -6,6 +6,7 @@
 #include <msgpack.hpp>
 
 #include "client.h"
+#include "common.h"
 
 int main()
 {
@@ -13,8 +14,8 @@ int main()
     std::vector<Async::Promise<Net::Http::Response>> responses;
 
     auto opts = Net::Http::Client::Options()
-        .threads(1)
-        .maxConnectionsPerHost(1);
+        .threads(5)
+        .maxConnectionsPerHost(5);
     netClient.init(opts);
 
     auto resp = netClient.get("http://127.0.0.1:8080/api/ready").send();
