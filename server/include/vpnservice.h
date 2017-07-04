@@ -1,32 +1,35 @@
+#ifndef VPNSERVICE_H
+#define VPNSERVICE_H
+
 #include <iostream>
 
-#include <pistache/http.h>
 #include <pistache/endpoint.h>
+#include <pistache/http.h>
 #include <pistache/router.h>
 
 #include <msgpack.hpp>
-#include <shared/include/cryptopp/config.h>
 
 #include "common/include/client.h"
 #include "common/include/common.h"
+#include "manager.h"
 
 class VpnService
 {
 public:
-    VpnService(Net::Address addr)
-        : httpEndpoint_(std::make_shared<Net::Http::Endpoint>(addr))
+    VpnService(Pistache::Address addr)
+        : httpEndpoint_(std::make_shared<Pistache::Http::Endpoint>(addr))
         , router_()
     { }
 
     void init(unsigned int threads) {
-        auto opts = Net::Http::Endpoint::options()
+        auto opts = Pistache::Http::Endpoint::options()
                 .threads(threads)
-                .flags(Net::Tcp::Options::InstallSignalHandler);
+                .flags(Pistache::Tcp::Options::InstallSignalHandler);
         httpEndpoint_->init(opts);
 
-        Net::Rest::Routes::Get(router_, "/api/ready", Net::Rest::Routes::bind(&VpnService::handlerReady, this));
-        Net::Rest::Routes::Get(router_, "/api/get", Net::Rest::Routes::bind(&VpnService::handlerGetAll, this));
-        Net::Rest::Routes::Post(router_, "/api/post", Net::Rest::Routes::bind(&VpnService::handlerUpdateUser, this));
+        Pistache::Rest::Routes::Get(router_, "/api/ready", Pistache::Rest::Routes::bind(&VpnService::handlerReady, this));
+        Pistache::Rest::Routes::Get(router_, "/api/get", Pistache::Rest::Routes::bind(&VpnService::handlerGetAll, this));
+        Pistache::Rest::Routes::Post(router_, "/api/post", Pistache::Rest::Routes::bind(&VpnService::handlerUpdateUser, this));
     }
 
     void start() {
@@ -40,10 +43,12 @@ public:
 
 private:
 
-    void handlerGetAll(const Net::Http::Request& request, Net::Http::ResponseWriter response);
-    void handlerUpdateUser(const Net::Http::Request& request, Net::Http::ResponseWriter response);
-    void handlerReady(const Net::Http::Request& request, Net::Http::ResponseWriter response);
+    void handlerGetAll(const Pistache::Http::Request& request, Pistache::Http::ResponseWriter response);
+    void handlerUpdateUser(const Pistache::Http::Request& request, Pistache::Http::ResponseWriter response);
+    void handlerReady(const Pistache::Http::Request& request, Pistache::Http::ResponseWriter response);
 
-    std::shared_ptr<Net::Http::Endpoint> httpEndpoint_;
-    Net::Rest::Router router_;
+    std::shared_ptr<Pistache::Http::Endpoint> httpEndpoint_;
+    Pistache::Rest::Router router_;
 };
+
+#endif

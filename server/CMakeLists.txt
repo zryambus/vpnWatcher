@@ -14,4 +14,4 @@ include_directories(include)
 add_subdirectory(../shared/external/pistache ${CMAKE_CURRENT_BINARY_DIR}/shared)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} net_static cryptopp-static common)
+target_link_libraries(${PROJECT_NAME} pistache common)

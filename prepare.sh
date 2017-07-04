@@ -8,7 +8,7 @@ fi
 
 # prepare includes
 # Pistache
-ln -s $baseDir/shared/external/pistache/include/ $baseDir/shared/include/pistache
+ln -s $baseDir/shared/external/pistache/include/pistache $baseDir/shared/include/pistache
 
 # Msgpack
 ln -s $baseDir/shared/external/msgpack-c/include/* $baseDir/shared/include/
